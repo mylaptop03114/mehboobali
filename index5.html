@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehboob Ali - IT Professional & Admin Officer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --c1:#0ea5e9; --c2:#8b5cf6; --c3:#22c55e; --c4:#f59e0b; --c5:#ec4899;
+      --bg:#0a0a0f; --bg2:#0f0f18; --bg3:#13131f;
+      --card:#16161f; --border:#1e1e2e; --text:#e2e8f0; --muted:#64748b;
+    }
+    [data-theme="light"] {
+      --bg:#f0f4ff; --bg2:#e8eeff; --bg3:#dde5ff;
+      --card:#ffffff; --border:#c7d0e8; --text:#1e293b; --muted:#64748b;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;transition:background 0.4s,color 0.4s;}
+
+    /* COLORFUL ANIMATED BORDER */
+    body::before{
+      content:'';position:fixed;inset:0;padding:3px;
+      background:linear-gradient(90deg,#0ea5e9,#8b5cf6,#22c55e,#f59e0b,#ec4899,#0ea5e9);
+      background-size:400% 100%;
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;
+      animation:borderFlow 5s linear infinite;pointer-events:none;z-index:9999;
+    }
+    @keyframes borderFlow{to{background-position:400% 0;}}
+
+    /* PARTICLES */
+    #pcvs{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+    /* NAVBAR */
+    nav{
+      position:fixed;top:0;width:100%;z-index:500;
+      padding:18px 60px;display:flex;align-items:center;justify-content:space-between;
+      background:rgba(10,10,15,0.5);backdrop-filter:blur(22px);
+      border-bottom:1px solid var(--border);transition:all 0.35s;
+    }
+    [data-theme="light"] nav{background:rgba(240,244,255,0.75);}
+    nav.scrolled{padding:11px 60px;background:rgba(10,10,15,0.96);}
+    [data-theme="light"] nav.scrolled{background:rgba(240,244,255,0.97);}
+
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{
+      width:42px;height:42px;border-radius:10px;
+      background:linear-gradient(135deg,#0ea5e9,#8b5cf6);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:#fff;
+      box-shadow:0 0 20px rgba(14,165,233,0.45);
+      transition:box-shadow 0.3s;
+    }
+    .nav-logo:hover .nav-logo-icon{box-shadow:0 0 35px rgba(14,165,233,0.7);}
+    .nav-logo-text{
+      font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;
+      background:linear-gradient(135deg,#0ea5e9,#8b5cf6);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+
+    .nav-links{display:flex;gap:32px;}
+    .nav-links a{
+      color:var(--muted);text-decoration:none;font-size:0.84rem;
+      font-weight:500;letter-spacing:0.8px;text-transform:uppercase;
+      transition:color 0.3s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-4px;left:0;right:0;
+      height:2px;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);
+      transform:scaleX(0);transition:transform 0.3s;
+    }
+    .nav-links a:hover{color:var(--c1);}
+    .nav-links a:hover::after{transform:scaleX(1);}
+
+    .nav-right{display:flex;align-items:center;gap:10px;}
+    .theme-btn{
+      width:40px;height:40px;border-radius:9px;background:var(--card);
+      border:1px solid var(--border);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);font-size:0.95rem;transition:all 0.3s;
+    }
+    .theme-btn:hover{color:var(--c4);border-color:var(--c4);box-shadow:0 0 14px rgba(245,158,11,0.3);}
+    .nav-cta{
+      background:linear-gradient(135deg,#0ea5e9,#8b5cf6);color:#fff;
+      padding:10px 22px;border-radius:8px;font-weight:600;
+      text-decoration:none;font-size:0.84rem;transition:all 0.3s;
+      text-transform:uppercase;letter-spacing:0.8px;
+      box-shadow:0 4px 20px rgba(14,165,233,0.3);
+      display:flex;align-items:center;gap:7px;
+    }
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(14,165,233,0.55);}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:130px 60px 60px;overflow:hidden;}
+    .hero-grid{
+      position:absolute;inset:0;pointer-events:none;
+      background-image:linear-gradient(rgba(14,165,233,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(14,165,233,0.04) 1px,transparent 1px);
+      background-size:70px 70px;
+    }
+    .hglow1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 65%);top:-200px;right:-200px;pointer-events:none;animation:gp 5s ease-in-out infinite;}
+    .hglow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.1) 0%,transparent 65%);bottom:-150px;left:-150px;pointer-events:none;animation:gp 5s ease-in-out infinite 2.5s;}
+    @keyframes gp{0%,100%{transform:scale(1);opacity:.8;}50%{transform:scale(1.12);opacity:1;}}
+
+    .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .hero-text{opacity:0;animation:sUp 0.9s ease 0.2s forwards;}
+    @keyframes sUp{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
+
+    .badge-online{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);
+      color:#22c55e;font-size:0.73rem;text-transform:uppercase;
+      letter-spacing:2px;padding:6px 16px;border-radius:50px;margin-bottom:24px;
+    }
+    .bdot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 1.5s ease infinite;}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+    .hero-name{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,7vw,6rem);font-weight:900;line-height:1.0;color:var(--text);margin-bottom:4px;}
+    .gtext{background:linear-gradient(135deg,#0ea5e9,#8b5cf6,#22c55e);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gs 4s ease infinite;}
+    @keyframes gs{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+    .typing-wrap{font-size:1.1rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;color:var(--c1);height:28px;}
+    #ttext{border-right:2px solid var(--c1);padding-right:3px;}
+
+    .hero-desc{color:var(--muted);line-height:1.9;font-size:1rem;max-width:460px;margin-bottom:36px;}
+    .hero-stats{display:flex;gap:28px;margin-bottom:38px;}
+    .snum{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+    .slbl{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px;}
+    .sdiv{border-left:1px solid var(--border);padding-left:26px;}
+
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn-p{background:linear-gradient(135deg,#0ea5e9,#8b5cf6);color:#fff;padding:13px 30px;text-decoration:none;font-weight:600;font-size:0.88rem;border-radius:8px;transition:all 0.3s;text-transform:uppercase;letter-spacing:0.8px;box-shadow:0 4px 20px rgba(14,165,233,0.3);display:inline-flex;align-items:center;gap:8px;}
+    .btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(14,165,233,0.5);}
+    .btn-o{border:1px solid var(--border);color:var(--text);padding:13px 30px;text-decoration:none;font-size:0.88rem;border-radius:8px;transition:all 0.3s;text-transform:uppercase;letter-spacing:0.8px;display:inline-flex;align-items:center;gap:8px;}
+    .btn-o:hover{border-color:var(--c2);color:var(--c2);box-shadow:0 0 20px rgba(139,92,246,0.2);}
+
+    /* IMAGE */
+    .hero-img-wrap{position:relative;opacity:0;animation:sUp 0.9s ease 0.4s forwards;display:flex;justify-content:center;align-items:center;}
+    .img-wrap-inner{position:relative;width:340px;height:340px;margin:0 auto;flex-shrink:0;}
+    .img-ring1{position:absolute;inset:-16px;border-radius:50%;background:conic-gradient(#0ea5e9,#8b5cf6,#22c55e,#f59e0b,#ec4899,#0ea5e9);animation:spinR 4s linear infinite;filter:blur(2px);}
+    .img-ring2{position:absolute;inset:-8px;border-radius:50%;background:conic-gradient(#ec4899,#0ea5e9,#8b5cf6,#22c55e,#ec4899);animation:spinR 6s linear infinite reverse;filter:blur(1px);opacity:0.7;}
+    @keyframes spinR{to{transform:rotate(360deg);}}
+    .img-circle{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;}
+    .img-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid var(--bg);}
+
+    .hero-badge{position:absolute;bottom:-10px;right:-10px;background:var(--card);border:1px solid var(--border);padding:13px 17px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.4);}
+    .hbn{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--c1);font-weight:700;line-height:1;}
+    .hbt{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+    .hero-socials{position:absolute;left:-54px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;}
+    .hslink{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:0.88rem;text-decoration:none;transition:all 0.3s;}
+    .hslink:hover{transform:translateX(-4px);}
+    .hslink.wa:hover{color:#25d366;border-color:#25d366;box-shadow:0 0 14px rgba(37,211,102,0.35);}
+    .hslink.gm:hover{color:#ea4335;border-color:#ea4335;box-shadow:0 0 14px rgba(234,67,53,0.35);}
+    .hslink.ph:hover{color:#0ea5e9;border-color:#0ea5e9;box-shadow:0 0 14px rgba(14,165,233,0.35);}
+
+    /* SECTIONS */
+    section{padding:100px 60px;position:relative;z-index:1;}
+    .stag{display:inline-flex;align-items:center;gap:8px;color:var(--c1);font-size:0.72rem;text-transform:uppercase;letter-spacing:4px;margin-bottom:12px;}
+    .stag::before{content:'';width:28px;height:1px;background:linear-gradient(90deg,var(--c1),var(--c2));}
+    .stitle{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:14px;}
+    .stitle span{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .sline{width:60px;height:3px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));border-radius:2px;margin-bottom:50px;box-shadow:0 0 10px rgba(14,165,233,0.4);}
+    .container{max-width:1200px;margin:0 auto;width:100%;}
+
+    /* ABOUT */
+    #about{background:var(--bg2);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+    .about-text p{color:var(--muted);line-height:1.9;font-size:1rem;margin-bottom:18px;}
+    .about-text p span{color:var(--text);font-weight:500;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:26px;}
+    .info-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;transition:all 0.3s;position:relative;overflow:hidden;}
+    .info-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));transform:scaleX(0);transition:transform 0.4s;}
+    .info-item:hover::before{transform:scaleX(1);}
+    .info-item:hover{border-color:rgba(14,165,233,0.3);}
+    .ilbl{font-size:0.67rem;text-transform:uppercase;letter-spacing:2px;color:var(--c1);margin-bottom:3px;}
+    .ival{font-size:0.88rem;color:var(--text);font-weight:500;}
+
+    .edu-tl{position:relative;padding-left:26px;}
+    .edu-tl::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,var(--c1),var(--c2),var(--c3),transparent);}
+    .edu-item{position:relative;margin-bottom:32px;padding-left:18px;}
+    .edu-item::before{content:'';position:absolute;left:-32px;top:6px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 14px rgba(14,165,233,0.7);}
+    .eyr{font-size:0.72rem;color:var(--c1);text-transform:uppercase;letter-spacing:2px;margin-bottom:2px;}
+    .edg{font-weight:600;font-size:0.97rem;color:var(--text);margin-bottom:2px;}
+    .esc{font-size:0.82rem;color:var(--muted);}
+
+    /* SKILLS */
+    #skills{background:var(--bg);}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;}
+    .skill-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;transition:all 0.4s;position:relative;overflow:hidden;cursor:default;}
+    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));transform:scaleX(0);transition:transform 0.4s;transform-origin:left;}
+    .skill-card:hover{border-color:rgba(14,165,233,0.4);transform:translateY(-7px);box-shadow:0 20px 60px rgba(14,165,233,0.12);}
+    .skill-card:hover::before{transform:scaleX(1);}
+    .skill-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(14,165,233,0.12),rgba(139,92,246,0.12));border:1px solid rgba(14,165,233,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:16px;transition:all 0.3s;}
+    .skill-card:hover .skill-icon{box-shadow:0 0 18px rgba(14,165,233,0.4);}
+    .skill-name{font-weight:600;font-size:0.98rem;color:var(--text);margin-bottom:7px;}
+    .skill-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:14px;}
+    .sbar-wrap{background:var(--bg3);border-radius:50px;height:5px;overflow:hidden;}
+    .sbar{height:100%;border-radius:50px;width:0;transition:width 1.5s ease;}
+
+    /* EXPERIENCE */
+    #experience{background:var(--bg2);}
+    .exp-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:44px 44px 44px 54px;max-width:800px;position:relative;overflow:hidden;}
+    .exp-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--c1),var(--c2),var(--c3));box-shadow:0 0 18px rgba(14,165,233,0.5);}
+    .exp-card::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.08),transparent);}
+    .eperiod{display:inline-block;background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(139,92,246,0.1));border:1px solid rgba(14,165,233,0.3);color:var(--c1);font-size:0.78rem;padding:5px 15px;border-radius:50px;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;}
+    .erole{font-family:'Playfair Display',serif;font-size:1.65rem;color:var(--text);margin-bottom:5px;}
+    .eorg{color:var(--c1);font-size:0.93rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .edesc{color:var(--muted);line-height:1.85;font-size:0.93rem;}
+
+    /* CONTACT */
+    #contact{background:var(--bg);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
+    .contact-list{display:flex;flex-direction:column;gap:16px;}
+    .ci{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;color:var(--text);transition:all 0.35s;position:relative;overflow:hidden;}
+    .ci::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c1),var(--c2));transform:scaleY(0);transition:transform 0.35s;}
+    .ci:hover{border-color:rgba(14,165,233,0.3);transform:translateX(6px);box-shadow:0 8px 28px rgba(14,165,233,0.1);}
+    .ci:hover::before{transform:scaleY(1);}
+    .cico{width:46px;height:46px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.05rem;transition:transform 0.3s;}
+    .ci:hover .cico{transform:scale(1.1);}
+    .ico-wa{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);color:#25d366;}
+    .ico-ph{background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.2);color:#0ea5e9;}
+    .ico-gm{background:rgba(234,67,53,0.1);border:1px solid rgba(234,67,53,0.2);color:#ea4335;}
+    .ico-lo{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#f59e0b;}
+    .ico-id{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);color:#8b5cf6;}
+    .clbl{font-size:0.67rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:2px;}
+    .cval{font-weight:500;font-size:0.92rem;}
+    .lang-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;}
+    .ltag{background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 16px;border-radius:6px;font-size:0.81rem;font-weight:500;transition:all 0.3s;}
+    .ltag:hover{border-color:var(--c1);color:var(--c1);}
+
+    /* FLOATING BUTTONS */
+    .floats{position:fixed;bottom:30px;right:22px;display:flex;flex-direction:column;gap:11px;z-index:400;}
+    .fb{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;text-decoration:none;transition:all 0.35s;position:relative;border:none;cursor:pointer;}
+    .fb::before{content:attr(data-tip);position:absolute;right:60px;top:50%;transform:translateY(-50%);background:var(--card);border:1px solid var(--border);color:var(--text);font-size:0.73rem;white-space:nowrap;padding:4px 11px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity 0.3s;font-family:'DM Sans',sans-serif;}
+    .fb:hover::before{opacity:1;}
+    .fb:hover{transform:scale(1.14);}
+    .fb-wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;box-shadow:0 5px 22px rgba(37,211,102,0.5);}
+    .fb-gm{background:linear-gradient(135deg,#ea4335,#c62828);color:#fff;box-shadow:0 5px 22px rgba(234,67,53,0.5);}
+    .fb-top{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;box-shadow:0 5px 22px rgba(14,165,233,0.5);}
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:26px 60px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+    .flogo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .ftxt{color:var(--muted);font-size:0.81rem;}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .rl{opacity:0;transform:translateX(-35px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .rl.visible{opacity:1;transform:translateX(0);}
+    .rr{opacity:0;transform:translateX(35px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .rr.visible{opacity:1;transform:translateX(0);}
+
+    /* ===== TABLET (max-width: 960px) ===== */
+    @media(max-width:960px){
+      nav{padding:13px 24px;}
+      nav.scrolled{padding:9px 24px;}
+      .nav-links{display:none;}
+      section{padding:70px 24px;}
+      #hero{padding:110px 24px 60px;}
+
+      .hero-content{grid-template-columns:1fr;gap:40px;text-align:center;}
+      .hero-img-wrap{order:-1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;}
+      .img-wrap-inner{width:280px;height:280px;margin:0 auto;}
+      .hero-badge{bottom:-10px;right:calc(50% - 150px);}
+      .hero-socials{display:none;}
+      .hero-desc{margin:0 auto 36px;}
+      .hero-stats{justify-content:center;}
+      .hero-btns{justify-content:center;}
+
+      .about-grid{grid-template-columns:1fr;gap:44px;}
+      .contact-grid{grid-template-columns:1fr;gap:44px;}
+      .skills-grid{grid-template-columns:1fr 1fr;}
+      .exp-card{padding:28px 24px 28px 36px;max-width:100%;}
+      footer{flex-direction:column;gap:9px;text-align:center;padding:20px 24px;}
+    }
+
+    /* ===== MOBILE (max-width: 600px) ===== */
+    @media(max-width:600px){
+      nav{padding:12px 16px;}
+      nav.scrolled{padding:8px 16px;}
+      section{padding:60px 16px;}
+      #hero{padding:100px 16px 50px;}
+
+      .hero-content{gap:32px;}
+      .img-wrap-inner{width:220px;height:220px;}
+      .hero-badge{bottom:-10px;right:calc(50% - 118px);}
+      .hero-name{font-size:clamp(2.8rem,12vw,4rem);}
+
+      .skills-grid{grid-template-columns:1fr;}
+      .info-grid{grid-template-columns:1fr;}
+      .exp-card{padding:22px 16px 22px 28px;}
+      .erole{font-size:1.3rem;}
+
+      .ci{padding:13px 14px;gap:12px;}
+      .cval{font-size:0.82rem;word-break:break-all;}
+
+      footer{padding:16px;}
+      footer > div:last-child{display:none;}
+
+      .floats{bottom:20px;right:14px;}
+      .fb{width:46px;height:46px;font-size:1.1rem;}
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+<canvas id="pcvs"></canvas>
+
+<!-- FLOATING BUTTONS -->
+<div class="floats">
+  <a href="https://wa.me/923139741536" target="_blank" class="fb fb-wa" data-tip="WhatsApp Me"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="#gmail" class="fb fb-gm" data-tip="Email Me"><i class="fa-brands fa-google"></i></a>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fb fb-top" data-tip="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-icon">MA</div>
+    <span class="nav-logo-text">Mehbob Ali</span>
+  </a>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themebtn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+    <a href="https://wa.me/923139741536" target="_blank" class="nav-cta"><i class="fa-brands fa-whatsapp"></i>Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hglow1"></div>
+  <div class="hglow2"></div>
+  <div class="hero-content">
+
+    <div class="hero-text">
+      <div class="badge-online"><span class="bdot"></span>Available for Work</div>
+      <h1 class="hero-name">MEHBOOB<br><span class="gtext">ALI</span></h1>
+      <div class="typing-wrap"><span id="ttext"></span></div>
+      <p class="hero-desc">A dedicated and hardworking professional who approaches every task with commitment and enthusiasm. Strong organizational and problem-solving skills, always eager to learn and contribute positively.</p>
+      <div class="hero-stats">
+        <div><div class="snum">2+</div><div class="slbl">Years Exp.</div></div>
+        <div class="sdiv"><div class="snum">3+</div><div class="slbl">IT Skills</div></div>
+        <div class="sdiv"><div class="snum">3</div><div class="slbl">Languages</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="https://wa.me/923139741536" class="btn-p"><i class="fa-solid fa-paper-plane"></i>Contact Me</a>
+        <a href="#about" class="btn-o"><i class="fa-solid fa-user"></i>View Profile</a>
+      </div>
+    </div>
+
+    <div class="hero-img-wrap">
+      <div class="hero-socials">
+        <a href="https://wa.me/923139741536" target="_blank" class="hslink wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#gmail" class="hslink gm" title="Email"><i class="fa-brands fa-google"></i></a>
+        <a href="tel:03139741536" class="hslink ph" title="Call"><i class="fa-solid fa-phone"></i></a>
+      </div>
+      <div class="img-wrap-inner">
+        <div class="img-ring1"></div>
+        <div class="img-ring2"></div>
+        <div class="img-circle">
+          <img src="mehboob.jpg" alt="Mehbob Ali">
+        </div>
+      </div>
+      <div class="hero-badge"><div class="hbn">2+</div><div class="hbt">Yrs Experience</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <span class="stag">Who I Am</span>
+    <h2 class="stitle">About <span>Me</span></h2>
+    <div class="sline"></div>
+    <div class="about-grid">
+      <div class="about-text rl">
+        <p>I am a <span>dedicated and hardworking professional</span> who approaches every task with commitment and enthusiasm. I take pride in my ability to learn quickly, adapt to new environments, and work efficiently both independently and as part of a team.</p>
+        <p>I have <span>strong organizational and problem-solving skills</span>, which allow me to complete tasks accurately and on time. I am always eager to develop my knowledge and contribute positively to my workplace.</p>
+        <div class="info-grid">
+          <div class="info-item reveal"><div class="ilbl">Father's Name</div><div class="ival">Noor Ul Wahab</div></div>
+          <div class="info-item reveal"><div class="ilbl">Date of Birth</div><div class="ival">15 April 2001</div></div>
+          <div class="info-item reveal"><div class="ilbl">Nationality</div><div class="ival">Pakistani</div></div>
+          <div class="info-item reveal"><div class="ilbl">Location</div><div class="ival">Charsadda, KPK</div></div>
+          <div class="info-item reveal"><div class="ilbl">CNIC</div><div class="ival">17102-7107338-5</div></div>
+          <div class="info-item reveal"><div class="ilbl">Gender</div><div class="ival">Male</div></div>
+        </div>
+      </div>
+      <div class="rr">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:26px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-graduation-cap" style="color:var(--c1);"></i>Education</h3>
+        <div class="edu-tl">
+          <div class="edu-item reveal"><div class="eyr">2021 – 2025 (Running)</div><div class="edg">BS Urdu Literature</div><div class="esc">Govt. Post Graduate College, Charsadda<br><span style="color:var(--c3);font-size:0.77rem;">● 8th Semester</span></div></div>
+          <div class="edu-item reveal"><div class="eyr">2022 – 2023</div><div class="edg">DIT – Information Technology</div><div class="esc">Govt. Technical Vocational Center Umarzai</div></div>
+          <div class="edu-item reveal"><div class="eyr">2019 – 2021</div><div class="edg">F.A (Intermediate)</div><div class="esc">Govt. Higher Secondary School Umarzai</div></div>
+          <div class="edu-item reveal"><div class="eyr">2015 – 2017</div><div class="edg">Matric</div><div class="esc">Govt. Shaheed Nangyal Tariq Centanial Model High School, Turangzai</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="stag">What I Know</span>
+    <h2 class="stitle">My <span>Skills</span></h2>
+    <div class="sline"></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal" data-delay="0"><div class="skill-icon" style="color:#0ea5e9;"><i class="fa-brands fa-microsoft"></i></div><div class="skill-name">MS Word</div><div class="skill-desc">Document creation, formatting, reports, letters and professional documentation.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#0ea5e9,#8b5cf6);" data-w="90"></div></div></div>
+      <div class="skill-card reveal" data-delay="100"><div class="skill-icon" style="color:#f59e0b;"><i class="fa-solid fa-file-powerpoint"></i></div><div class="skill-name">MS PowerPoint</div><div class="skill-desc">Designing presentations, slide decks and visual reports for professional use.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#f59e0b,#ec4899);" data-w="85"></div></div></div>
+      <div class="skill-card reveal" data-delay="200"><div class="skill-icon" style="color:#22c55e;"><i class="fa-solid fa-table"></i></div><div class="skill-name">MS Excel</div><div class="skill-desc">Spreadsheets, data entry, formulas, and record management for office tasks.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#22c55e,#0ea5e9);" data-w="80"></div></div></div>
+      <div class="skill-card reveal" data-delay="300"><div class="skill-icon" style="color:#8b5cf6;"><i class="fa-solid fa-laptop-code"></i></div><div class="skill-name">Information Technology</div><div class="skill-desc">Diploma in IT — computer operation, software usage, and digital office tools.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#8b5cf6,#ec4899);" data-w="88"></div></div></div>
+      <div class="skill-card reveal" data-delay="400"><div class="skill-icon" style="color:#ec4899;"><i class="fa-solid fa-users-gear"></i></div><div class="skill-name">Team Collaboration</div><div class="skill-desc">Works efficiently both independently and as part of a team with ease.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#ec4899,#f59e0b);" data-w="92"></div></div></div>
+      <div class="skill-card reveal" data-delay="500"><div class="skill-icon" style="color:#0ea5e9;"><i class="fa-solid fa-clipboard-check"></i></div><div class="skill-name">Organization & Admin</div><div class="skill-desc">Strong organizational skills for task management, coordination and admin duties.</div><div class="sbar-wrap"><div class="sbar" style="background:linear-gradient(90deg,#0ea5e9,#22c55e);" data-w="95"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <span class="stag">Work History</span>
+    <h2 class="stitle">My <span>Experience</span></h2>
+    <div class="sline"></div>
+    <a href="https://maps.app.goo.gl/nar7EcZRrJTSNMPx5" target="_blank" style="text-decoration:none;">
+      <div class="exp-card reveal">
+        <span class="eperiod"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i>2023 – 2025</span>
+        <h3 class="erole">Admin Officer</h3>
+        <p class="eorg"><i class="fa-solid fa-building"></i>Local Government Tahsil District Charsadda</p>
+        <p class="edesc">Served as an Administrative Officer at Local Government Tahsil District Charsadda for over 2 years. Responsibilities included managing official documents, coordinating office tasks, handling data entry and record keeping, and providing efficient administrative support to ensure smooth department operations.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="rl">
+        <span class="stag">Get In Touch</span>
+        <h2 class="stitle">Contact <span>Me</span></h2>
+        <div class="sline"></div>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:8px;">Looking for a reliable, hardworking professional? I'm available for full-time positions and ready to contribute my skills to your team.</p>
+        <div class="lang-tags">
+          <span class="ltag"><i class="fa-solid fa-globe" style="color:var(--c1);margin-right:5px;"></i>English</span>
+          <span class="ltag">اردو</span>
+          <span class="ltag">پښتو</span>
+        </div>
+      </div>
+      <div class="contact-list rr">
+        <a href="https://wa.me/923139741536" target="_blank" class="ci"><div class="cico ico-wa"><i class="fa-brands fa-whatsapp"></i></div><div><div class="clbl">WhatsApp</div><div class="cval">0313-9741536</div></div></a>
+        <a href="https://mail.google.com/mail/u/0/#search/Mehboobalikhan0313%40gmail.com" class="ci" id="gmail"><div class="cico ico-gm"><i class="fa-brands fa-google"></i></div><div><div class="clbl">Gmail</div><div class="cval">Mehboobalikhan0313@gmail.com</div></div></a>
+        <a href="https://maps.app.goo.gl/MLtmifQx5xU9qqxL8" target="_blank" style="text-decoration:none;"><div class="ci"><div class="cico ico-lo"><i class="fa-solid fa-location-dot"></i></div><div><div class="clbl">Address</div><div class="cval">Yaqoob Khan Korona, Umarzai Tahsil, Charsadda, KPK</div></div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Mehboob Ali</div>
+  <div class="ftxt">© 2025 Mehboob Ali · All Rights Reserved</div>
+  <div style="color:var(--muted);font-size:0.78rem;">Charsadda, KPK · Pakistan</div>
+</footer>
+
+<script>
+/* === PARTICLES === */
+const cvs=document.getElementById('pcvs'),ctx=cvs.getContext('2d');
+const clrs=['#0ea5e9','#8b5cf6','#22c55e','#f59e0b','#ec4899'];
+function resize(){cvs.width=innerWidth;cvs.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
+class P{
+  reset(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.r=Math.random()*2+.5;this.vx=(Math.random()-.5)*.55;this.vy=(Math.random()-.5)*.55;this.c=clrs[Math.floor(Math.random()*clrs.length)];this.a=Math.random()*.45+.1;this.life=0;this.ml=Math.random()*300+200;}
+  constructor(){this.reset();}
+  update(){this.x+=this.vx;this.y+=this.vy;this.life++;if(this.life>this.ml||this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.reset();}
+  draw(){ctx.save();ctx.globalAlpha=this.a*(1-this.life/this.ml);ctx.fillStyle=this.c;ctx.shadowBlur=8;ctx.shadowColor=this.c;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill();ctx.restore();}
+}
+const pts=Array.from({length:110},()=>new P());
+function lines(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.save();ctx.globalAlpha=(1-d/100)*.07;ctx.strokeStyle=pts[i].c;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();ctx.restore();}}}
+function anim(){ctx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.update();p.draw();});lines();requestAnimationFrame(anim);}
+anim();
+
+/* === TYPING === */
+const phrases=['IT Professional','Admin Officer','MS Office Expert','Problem Solver'];
+let pi=0,ci=0,del=false;
+const tel=document.getElementById('ttext');
+function type(){
+  const cur=phrases[pi];
+  if(!del){tel.textContent=cur.slice(0,ci+1);ci++;if(ci===cur.length){del=true;setTimeout(type,1800);return;}}
+  else{tel.textContent=cur.slice(0,ci-1);ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,del?60:100);
+}
+type();
+
+/* === NAV SCROLL === */
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);});
+
+/* === THEME TOGGLE === */
+document.getElementById('themebtn').addEventListener('click',function(){
+  const isDark=document.body.dataset.theme==='dark';
+  document.body.dataset.theme=isDark?'light':'dark';
+  this.innerHTML=isDark?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>';
+});
+
+/* === SCROLL REVEAL === */
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const d=e.target.dataset.delay||0;setTimeout(()=>e.target.classList.add('visible'),+d);}}),{threshold:.12});
+document.querySelectorAll('.reveal,.rl,.rr').forEach(el=>ro.observe(el));
+
+/* === SKILL BARS === */
+const bo=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.sbar').forEach(b=>setTimeout(()=>{b.style.width=b.dataset.w+'%';},300));}),{threshold:.3});
+document.querySelectorAll('.skill-card').forEach(c=>bo.observe(c));
+</script>
+</body>
+</html>
